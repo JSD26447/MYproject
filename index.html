@@ -1164,8 +1164,15 @@
     }
 
     @keyframes fadeInPanel {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .detail-thumb {
@@ -1319,18 +1326,54 @@
         grid-template-columns: 1fr;
       }
 
-      .project-detail-panel {
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        z-index: 1000;
-        border-radius: 0;
-        margin: 0;
-        border: none;
-        overflow-y: auto;
+      /* Hide grid and filters when project detail is open */
+      .projects-layout.panel-open .projects-grid-col {
+        display: none;
       }
-      
+
+      .projects-section:has(.projects-layout.panel-open) .filter-tabs {
+        display: none;
+      }
+
+      .project-detail-panel {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-height: none;
+        z-index: 10;
+        border-radius: 20px;
+        margin: 0;
+        border: 0.5px solid var(--border);
+        overflow-y: hidden;
+        box-shadow: none;
+        opacity: 0;
+        display: none;
+      }
+
+      .project-detail-panel.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        animation: fadeInMobile 0.4s ease forwards;
+        transition: none;
+      }
+
+      @keyframes fadeInMobile {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       .detail-thumb {
-        height: 220px;
+        height: 180px;
       }
 
       .filter-tabs {
@@ -2045,8 +2088,7 @@
             <div class="detail-actions">
               <button class="detail-btn detail-btn-primary"
                 onclick="if(projectData[currentProject].detailId) { window.location.href='project-detail.html?id=' + projectData[currentProject].detailId; } else { alert('หน้า Demo หรือ Project Details นี้กำลังอยู่ในช่วงการพัฒนาครับ 🚀'); }">Demo</button>
-              <button class="detail-btn detail-btn-outline"
-                onclick="closeDetailPanel()">Back</button>
+              <button class="detail-btn detail-btn-outline" onclick="closeDetailPanel()">Back</button>
             </div>
           </div>
         </div>
@@ -2378,7 +2420,7 @@
       const layout = document.querySelector('.projects-layout');
       layout.classList.add('panel-open');
       panel.classList.add('show');
-      
+
       const body = panel.querySelector('.detail-body');
       body.style.opacity = '0';
       body.style.transform = 'translateY(8px)';
@@ -2406,7 +2448,12 @@
         body.style.opacity = '1';
         body.style.transform = 'translateY(0)';
 
-        // on mobile, scroll to panel is not needed because it's a full overlay popup now
+        // on mobile, scroll to top of projects section so the user doesn't end up far down the page
+        if (window.innerWidth <= 900) {
+          const projectsSection = document.getElementById('projects');
+          const panelOffset = projectsSection.offsetTop - 80; // Account for fixed nav
+          window.scrollTo({ top: panelOffset, behavior: 'smooth' });
+        }
       }, 300);
 
       currentProject = id;
@@ -2417,17 +2464,23 @@
       const layout = document.querySelector('.projects-layout');
       panel.classList.remove('show');
       layout.classList.remove('panel-open');
-      
+
       // Remove active state from card
       document.querySelectorAll('.project-card').forEach(c => c.classList.remove('active'));
       currentProject = null;
+
+      // Scroll back up to the filter tabs/grid start lightly on mobile
+      if (window.innerWidth <= 900) {
+        const projectsSection = document.getElementById('projects');
+        window.scrollTo({ top: projectsSection.offsetTop - 80, behavior: 'smooth' });
+      }
     }
 
     // Initialize map on detail click?
     selectProject(1); // Set default project temporarily
     // Wait, let's close it by default so the user sees the cards full width first!
     closeDetailPanel();
-    
+
     // Auto-select based on scroll or category? 
     // Not needed, we keep it closed initially. filter
     function filterProjects(cat, btn) {
@@ -2470,8 +2523,7 @@
       });
     });
 
-    // Auto-select first project on load
-    window.addEventListener('load', () => { selectProject(1); });
+    // เริ่มต้นให้แสดงรายการแบบเต็มหน้า โดยไม่มีโปรเจกต์ใดถูกเลือกไว้เลย
 
     // EmailJS Contact Form
     function sendEmail() {
