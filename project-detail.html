@@ -156,21 +156,66 @@
     .slider-img-container {
       width: 100%;
       aspect-ratio: 16/9;
-      background: #1a1a2e;
-      /* Themed dark background */
+      background: #0d0d0d;
       border-radius: 12px;
       overflow: hidden;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      perspective: 1000px;
     }
 
     .slider-img {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: opacity 0.4s ease;
+      cursor: zoom-in;
+      transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1), transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), filter 0.8s ease, opacity 0.8s ease;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    .slider-img.active {
+      opacity: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      transform: translateX(0) scale(1);
+      z-index: 2;
+    }
+
+    /* Incoming slide Next */
+    .slider-img.slide-next-enter {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      transform: translateX(10%) scale(1.05);
+      z-index: 3;
+      opacity: 1;
+    }
+
+    /* Outgoing slide Next */
+    .slider-img.slide-next-exit {
+      transform: translateX(-15%) scale(0.95);
+      filter: blur(5px);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* Incoming slide Prev */
+    .slider-img.slide-prev-enter {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      transform: translateX(-10%) scale(1.05);
+      z-index: 3;
+      opacity: 1;
+    }
+
+    /* Outgoing slide Prev */
+    .slider-img.slide-prev-exit {
+      transform: translateX(15%) scale(0.95);
+      filter: blur(5px);
+      opacity: 0;
+      z-index: 1;
     }
 
     .slider-arrows {
@@ -182,6 +227,7 @@
       justify-content: space-between;
       padding: 0 20px;
       pointer-events: none;
+      z-index: 10;
     }
 
     .arrow-btn {
@@ -198,11 +244,16 @@
       cursor: pointer;
       pointer-events: auto;
       backdrop-filter: blur(4px);
-      transition: background 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .arrow-btn:hover {
       background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.15);
+    }
+
+    .arrow-btn:active {
+      transform: scale(0.9);
     }
 
     .slider-dots {
@@ -213,17 +264,18 @@
     }
 
     .dot {
-      width: 6px;
-      height: 6px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.3);
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .dot.active {
       background: white;
-      transform: scale(1.3);
+      transform: scale(1.5);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
     /* Action Buttons */
@@ -330,13 +382,48 @@
       min-height: 40vh;
       padding: 2rem 0;
       opacity: 0.3;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      transform: translateX(-10px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(30px) scale(0.98);
+      filter: blur(4px);
     }
 
     .scroll-step.active {
       opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    .scroll-step .step-num {
+      transition: all 0.5s 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(0.5);
+      opacity: 0;
+    }
+
+    .scroll-step.active .step-num {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .scroll-step .step-title {
+      transition: all 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+
+    .scroll-step.active .step-title {
       transform: translateX(0);
+      opacity: 1;
+    }
+
+    .scroll-step .step-desc {
+      transition: all 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    .scroll-step.active .step-desc {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .step-num {
@@ -386,19 +473,29 @@
       }
 
       .layout-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
         gap: 1.5rem;
       }
 
       .media-col {
-        position: relative;
-        top: 0;
+        position: sticky;
+        top: 70px;
+        /* Below the topbar */
         margin-bottom: 2rem;
+        z-index: 10;
       }
 
       .slider-frame {
         border-radius: 16px;
         padding: 0.8rem;
+        background: var(--surface2);
+      }
+
+      .slider-arrows,
+      .slider-dots {
+        display: none !important;
       }
 
       .info-card {
@@ -554,7 +651,7 @@
 
     <div class="layout-grid">
 
-      <!-- Left: Mockup & Buttons (Sticky) -->
+      <!-- Media & Buttons (Sticky on Mobile, Left on Desktop) -->
       <div class="media-col">
         <div class="slider-frame">
           <div class="mac-top">
@@ -562,8 +659,7 @@
             <div class="mac-dot y"></div>
             <div class="mac-dot g"></div>
           </div>
-          <div class="slider-img-container">
-            <img src="" alt="Project Slide" class="slider-img" id="slideImg" onclick="openLightbox(this.src)">
+          <div class="slider-img-container" id="sliderImgContainer">
             <div class="slider-arrows">
               <button class="arrow-btn" onclick="prevSlide()">❮</button>
               <button class="arrow-btn" onclick="nextSlide()">❯</button>
@@ -577,7 +673,7 @@
         </div>
       </div>
 
-      <!-- Right: Info & Scroll Text -->
+      <!-- Info & Scroll Text (Right on Desktop) -->
       <div class="info-col">
         <div class="info-card">
           <div class="info-card-title">Project Info</div>
@@ -788,19 +884,48 @@
           {
             img: "images/ART_LOGO.jpg",
             title: "Logo Design",
-            text: "ตัวอย่างการออกแบบโลโก้ที่เน้นความเรียบง่าย แต่มีเอกลักษณ์จดจำง่าย"
+            text: "ผลงานได้เข้ารอบชิงโหวตตัดสินเเละรับรางวัล อันดับที่3 ในการออกเเบบโลโก้ของสาขาวิทยาการข้อมูลเเละนวัตกรรมซอฟต์เเวร์"
           },
           {
             img: "images/logo.png",
             title: "Poster Design",
-            text: "การออกแบบโปสเตอร์กิจกรรมชมรมที่เน้นความทันสมัย"
+            text: "ผลงานที่ได้รับรางวัล หลักสูตรวิทยาการข้อมูลเเละนวัตกรรมซอฟต์เเวร์ อันดับที่3"
+          }
+        ]
+      },
+      'poster_design': {
+        title: "รับออกแบบโปสเตอร์ชมรม",
+        desc: "รับออกแบบโปสเตอร์โปรโมทกิจกรรมสำหรับชมรมต่างๆ โดยเน้นความน่าสนใจและการสื่อสารที่ชัดเจน",
+        type: "Graphic Design",
+        stack: "Photoshop, Canva, Icograms",
+        role: "Graphic Designer",
+        slides: [
+          {
+            img: "images/katoo1.png",
+            title: "Club Poster",
+            text: "ตัวอย่างโปสเตอร์ที่ออกแบบให้ชมรมในมหาวิทยาลัย โดยได้รับโจทย์คือออกเเบบ ในตรีมวันวิทยาศาสตร์เเต่ยังคงเเสดงให้เห็นถึงความเป็นชมรมเปตองอยู่"
+          },
+          {
+            img: "images/katoo2.jpg",
+            title: "Club Poster",
+            text: "ตัวอย่างโปสเตอร์ที่ออกแบบให้ชมรมนำไปใช้จริงช่วงการโปรโมทกิจกรรมหาคนเข้าชมรม"
+          },
+          {
+            img: "images/katoo3.jpg",
+            title: "Club Poster",
+            text: "ตัวอย่างโปสเตอร์ที่ออกแบบให้ชมรมนำไปใช้จริงช่วงการโปรโมทกิจกรรมหาคนเข้าชมรม"
+          },
+          {
+            img: "images/Map.png",
+            title: "Map Design 3D",
+            text: "สร้างเเผนที่มุมมองสามมิติ 3D เพื่อให้สมาชิกชมรมสามารถทำความเข้าใจเกี่ยวกับพื้นที่ต่างๆภายในห้องกิจกรรมได้ง่ายขึ้น"
           }
         ]
       },
       'siemsee': {
         title: "ระบบเซียมซี (Siemsee)",
-        desc: "โปรเจกต์พัฒนาระบบเสี่ยงทายออนไลน์เพื่อใช้ในกิจกรรมต่างๆ โดยเน้น UX/UI ที่เป็นไทยประยุกต์และเข้ากับยุคสมัย",
-        type: "Web Application, ได้รับขออนุญาติเรียบร้อย",
+        desc: "โปรเจกต์พัฒนาระบบเสี่ยงทายออนไลน์เพื่อใช้ในกิจกรรมต่างๆ โดยโจทย์ความต้องการของผู้ว่าจ้างคือหัวข้อที่เน้น UX/UI ที่เป็นไทยประยุกต์และเข้ากับยุคสมัยเเละยังคงความเป็นไทยจึงได้ผลงานชิ้นนี้ออกมา",
+        type: "รับจ้างพัฒนา Web Application, ได้รับขออนุญาติเรียบร้อย",
         stack: "HTML, CSS, JS",
         role: "Front-End Developer",
         links: {
@@ -811,7 +936,7 @@
           {
             img: "images/siemsee1.png",
             title: "Main Interface",
-            text: "หน้าแรกสำหรับการเลือกกระบอกเซียมซี มีอนิเมชันจำลองการเขย่าและผลพยากรณ์"
+            text: "โจทย์ความต้องการของผู้ว่าจ้างคือหัวข้อที่เน้น UX/UI ที่เป็นไทยประยุกต์และเข้ากับยุคสมัยเเละยังคงความเป็นไทยจึงได้ผลงานชิ้นนี้ออกมา สามารถเข้าไปชมได้ที่ เว็บไซต์"
           }
         ]
       },
@@ -858,7 +983,7 @@
     };
 
     // --- LOGIC ---
-    let currentSlideIndex = 0;
+    let currentSlideIndex = -1;
     let projectData = null;
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -923,14 +1048,41 @@
 
     function updateSlide(idx) {
       if (!projectData) return;
+
+      let direction = 'next';
+      if (currentSlideIndex !== -1) {
+        if (idx < currentSlideIndex) direction = 'prev';
+        if (currentSlideIndex === projectData.slides.length - 1 && idx === 0) direction = 'next';
+        if (currentSlideIndex === 0 && idx === projectData.slides.length - 1) direction = 'prev';
+      }
+
+      if (currentSlideIndex === idx) return;
+
       currentSlideIndex = idx;
 
-      const imgEl = document.getElementById('slideImg');
-      imgEl.style.opacity = 0;
-      setTimeout(() => {
-        imgEl.src = projectData.slides[idx].img;
-        imgEl.style.opacity = 1;
-      }, 250);
+      const container = document.getElementById('sliderImgContainer');
+      const existingImgs = container.querySelectorAll('.slider-img');
+
+      const newImg = document.createElement('img');
+      newImg.src = projectData.slides[idx].img;
+      newImg.className = `slider-img slide-${direction}-enter`;
+      newImg.onclick = () => openLightbox(newImg.src);
+
+      const arrows = container.querySelector('.slider-arrows');
+      container.insertBefore(newImg, arrows);
+
+      void newImg.offsetWidth;
+
+      newImg.classList.add('active');
+      newImg.classList.remove(`slide-${direction}-enter`);
+
+      existingImgs.forEach(oldImg => {
+        oldImg.classList.remove('active');
+        oldImg.classList.add(`slide-${direction}-exit`);
+        setTimeout(() => {
+          if (oldImg.parentNode) oldImg.remove();
+        }, 800);
+      });
 
       document.querySelectorAll('.dot').forEach((d, i) => {
         d.classList.toggle('active', i === idx);
@@ -962,16 +1114,14 @@
     }
 
     function scrollToSection(idx) {
-      if (window.innerWidth > 900) return;
       const el = document.getElementById(`step-${idx}`);
       if (el) {
-        const offset = el.getBoundingClientRect().top + window.scrollY - 150;
+        const offset = el.getBoundingClientRect().top + window.scrollY - 300;
         window.scrollTo({ top: offset, behavior: 'smooth' });
       }
     }
 
     function initScrollSpy() {
-      if (window.innerWidth <= 900) return;
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -983,7 +1133,7 @@
           }
         });
       }, {
-        rootMargin: '-30% 0px -50% 0px'
+        rootMargin: '-40% 0px -40% 0px'
       });
 
       document.querySelectorAll('.scroll-step').forEach(step => observer.observe(step));
