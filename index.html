@@ -1203,6 +1203,30 @@
       transition: transform 0.3s;
     }
 
+    .detail-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: all 0.2s;
+    }
+
+    .detail-close-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+      transform: scale(1.05);
+    }
+
     .detail-num {
       position: absolute;
       top: 14px;
@@ -1322,6 +1346,10 @@
     }
 
     @media (max-width: 900px) {
+      .detail-close-btn {
+        display: flex;
+      }
+
       .projects-layout.panel-open {
         grid-template-columns: 1fr;
       }
@@ -1800,11 +1828,8 @@
       </div>
       <div class="hero-right fade-up">
         <div class="hero-card">
-          <div class="hero-card-icon-box">
-            <svg viewBox="0 0 24 24">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
+          <div class="hero-card-icon-box" style="display: flex; align-items: center; justify-content: center;">
+            <img src="images/OIP-removebg-preview.png" alt="OIP Logo" style="width: 120%; height: 120%; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));">
           </div>
           <div class="hero-card-content">
             <div class="hero-card-label">Experience</div>
@@ -2110,6 +2135,9 @@
         <!-- DETAIL PANEL -->
         <div class="project-detail-panel" id="detailPanel">
           <div class="detail-thumb" id="detailThumb">
+            <button class="detail-close-btn" onclick="closeDetailPanel()" aria-label="Close panel">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
             <div class="detail-thumb-text" id="detailThumbText">ONE-AI</div>
             <div class="detail-thumb-icon" id="detailThumbIcon">🧠</div>
             <div class="detail-num">1</div>
@@ -2142,7 +2170,10 @@
   <section class="internship-section" id="internship">
     <div class="section-inner fade-up">
       <div class="section-label">Internship</div>
-      <h2 class="section-title" style="color:white;">Internship @ depa</h2>
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+        <img src="images/OIP-removebg-preview.png" alt="Internship Logo" style="height: 70px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.5)); transform: scale(1.1); transform-origin: left center;">
+        <h2 class="section-title" style="color:white; margin-bottom: 0;">Internship @ depa</h2>
+      </div>
       <p class="section-sub">ระยะเวลา 3 ธันวาคม 2568 – 3 เมษายน 2569 |
         สำนักงานส่งเสริมเศรษฐกิจดิจิทัลเเละผลงานที่ได้ทำในระหว่างการฝึกงาน</p>
       <div class="internship-grid">
@@ -2532,9 +2563,9 @@
     }
 
     // Initialize map on detail click?
-    selectProject(1); // Set default project temporarily
+    // selectProject(1); // Set default project temporarily
     // Wait, let's close it by default so the user sees the cards full width first!
-    closeDetailPanel();
+    // closeDetailPanel(); // Disabled on load to prevent auto-scroll on mobile
 
     // Auto-select based on scroll or category? 
     // Not needed, we keep it closed initially. filter
