@@ -1517,12 +1517,16 @@
     .internship-gallery {
       position: sticky;
       top: 100px;
+      position: relative;
+    }
+
+    .internship-slides {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
 
-    .internship-gallery img {
+    .internship-slides img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -1532,38 +1536,76 @@
     }
 
     /* First image takes full width */
-    .internship-gallery img:nth-child(1) {
+    .internship-slides img:nth-child(1) {
       grid-column: 1 / -1;
       aspect-ratio: 16/10;
     }
 
-    .internship-gallery img:nth-child(2),
-    .internship-gallery img:nth-child(3),
-    .internship-gallery img:nth-child(4),
-    .internship-gallery img:nth-child(5) {
+    .internship-slides img:nth-child(n+2) {
       aspect-ratio: 1/1;
+    }
+
+    .slider-btn {
+      display: none;
     }
 
     @media (max-width: 900px) {
       .internship-grid {
         grid-template-columns: 1fr;
       }
-
       .internship-gallery {
         position: static;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.05);
+        aspect-ratio: 16/10;
+        background: var(--surface2);
+        margin-bottom: 20px;
+      }
+      .internship-slides {
         display: flex;
-        overflow-x: auto;
-        gap: 15px;
-        padding: 10px 5px 20px;
-        scroll-snap-type: x mandatory;
-        max-width: 100%;
+        gap: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      .internship-gallery img {
-        flex: 0 0 280px;
-        scroll-snap-align: center;
-        aspect-ratio: 16/10 !important;
+      .internship-slides img {
+        flex-shrink: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        aspect-ratio: auto;
       }
+      .internship-slides img:nth-child(1),
+      .internship-slides img:nth-child(n+2) {
+        aspect-ratio: auto;
+      }
+      .slider-btn {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        z-index: 10;
+        backdrop-filter: blur(4px);
+        font-size: 14px;
+      }
+      .slider-btn:hover {
+        background: var(--gold);
+        color: black;
+      }
+      .slider-btn-prev { left: 10px; }
+      .slider-btn-next { right: 10px; }
     }
 
     /* Lightbox Modal */
@@ -1880,7 +1922,7 @@
       <div class="about-grid">
         <div class="about-photo-wrap reveal reveal-left">
           <div class="about-photo-bg">
-            <img src="images/ART.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="images/myart2.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover;">
           </div>
           <div class="about-badge">🎓 Data Science & Software Innovation</div>
         </div>
@@ -2178,12 +2220,16 @@
         สำนักงานส่งเสริมเศรษฐกิจดิจิทัลเเละผลงานที่ได้ทำในระหว่างการฝึกงาน</p>
       <div class="internship-grid">
         <div class="internship-gallery">
-          <!-- เปลี่ยนลิงก์รูปภาพเหล่านี้เป็นรูปของคุณได้เลย -->
-          <img src="images/internship.jpg" alt="Work 1">
-          <img src="images/internship01.jpg" alt="Work 2">
-          <img src="images/internship02.jpg" alt="Work 3">
-          <img src="images/internship03.jpg" alt="Work 4">
-          <img src="images/code.jpg" alt="Work 5">
+          <div class="internship-slides" id="internshipSlides">
+            <img src="images/depa1.jpg" alt="Work 0">
+            <img src="images/internship.jpg" alt="Work 1">
+            <img src="images/internship01.jpg" alt="Work 2">
+            <img src="images/internship02.jpg" alt="Work 3">
+            <img src="images/internship03.jpg" alt="Work 4">
+            <img src="images/code.jpg" alt="Work 5">
+          </div>
+          <button class="slider-btn slider-btn-prev" onclick="moveInternshipSlide(-1)">&#10094;</button>
+          <button class="slider-btn slider-btn-next" onclick="moveInternshipSlide(1)">&#10095;</button>
         </div>
         <div class="timeline">
           <!-- ONE-AI Platform -->
@@ -2601,7 +2647,7 @@
 
     // Attach Lightbox to Gallery Images
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.internship-gallery img').forEach(img => {
+      document.querySelectorAll('.internship-slides img').forEach(img => {
         img.addEventListener('click', (e) => {
           e.stopPropagation(); // prevent other clicks
           openLightbox(img.src);
@@ -2657,6 +2703,37 @@
         console.error('EmailJS error:', error);
       });
     }
+    // Internship Slider Logic
+    let currentInternshipSlide = 0;
+    const internshipSlidesContainer = document.getElementById('internshipSlides');
+    
+    function updateInternshipSlide() {
+      if(internshipSlidesContainer && window.innerWidth <= 900) {
+        internshipSlidesContainer.style.transform = `translateX(-${currentInternshipSlide * 100}%)`;
+      } else if (internshipSlidesContainer) {
+        internshipSlidesContainer.style.transform = 'none';
+      }
+    }
+    window.addEventListener('resize', updateInternshipSlide);
+
+    function moveInternshipSlide(direction) {
+      if (!internshipSlidesContainer) return;
+      const totalInternshipSlides = document.querySelectorAll('.internship-slides img').length;
+      currentInternshipSlide += direction;
+      if (currentInternshipSlide >= totalInternshipSlides) currentInternshipSlide = 0;
+      if (currentInternshipSlide < 0) currentInternshipSlide = totalInternshipSlides - 1;
+      updateInternshipSlide();
+      resetInternshipAutoSlide();
+    }
+
+    let internshipAutoSlideInterval;
+    function resetInternshipAutoSlide() {
+      clearInterval(internshipAutoSlideInterval);
+      internshipAutoSlideInterval = setInterval(() => moveInternshipSlide(1), 4000);
+    }
+    
+    // Initialize auto slide
+    resetInternshipAutoSlide();
   </script>
 </body>
 
