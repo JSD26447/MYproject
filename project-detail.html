@@ -1018,27 +1018,36 @@
         stack: "Angular 21, NestJS 11, PostgreSQL, TypeORM",
         role: "Full-Stack Developer",
         timeline: "Current",
-        links: { github: "https://github.com/JSD26447/Fertilizer.git", website: "https://fertilizer-tau.vercel.app/" },
+        links: { 
+          youtube: "https://youtu.be/LT8CU3tAgck",
+          github: "https://github.com/JSD26447/Fertilizer.git", 
+          website: "https://fertilizer-tau.vercel.app/" 
+        },
         slides: [
           {
             img: "images/f1.jpg",
-            title: "Frontend Architecture (Angular)",
-            text: "พัฒนาด้วย Angular 21 และ TypeScript พร้อมใช้งาน RxJS จัดการ Asynchronous Operation มีโครงสร้างโปรเจกต์ที่เป็นระเบียบด้วย Component-based Architecture และมี Routing รองรับสิทธิ์ผู้ใช้งานที่แตกต่างกัน"
+            title: "Storefront UX/UI (หน้าร้านค้า)",
+            text: "ส่วนหน้าบ้านที่ลูกค้าเห็น ออกแบบให้ใช้งานง่าย เลือกดูสินค้าและเพิ่มลงตะกร้าได้อย่างรวดเร็ว"
           },
           {
             img: "images/f2.jpg",
-            title: "Backend Services (NestJS)",
-            text: "ระบบ Backend พัฒนาด้วย NestJS 11 รองรับสถาปัตยกรรม OOP และ Dependency Injection ที่เข้ากันได้ดีกับ Angular ใช้ Passport.js และ JWT สำหรับการ Authentication รวมถึงเข้ารหัสผ่านด้วย bcrypt"
+            title: "Order Form (ฟอร์มสั่งซื้อสินค้า)",
+            text: "ระบบกรอกฟอร์มสั่งซื้อสินค้าที่ออกแบบมาให้กรอกข้อมูลได้อย่างสะดวกและครบถ้วน"
           },
           {
             img: "images/f3.jpg",
-            title: "Database Management (PostgreSQL)",
-            text: "เชื่อมต่อกับฐานข้อมูล PostgreSQL ที่โฮสต์บน Supabase ใช้ TypeORM เพื่อจัดการ Database Schema แบบ Object-Oriented ช่วยลดความซับซ้อนในการจัดการข้อมูล"
+            title: "Google Maps Integration",
+            text: "ดูแผนที่จุดนัดรับส่งสินค้าได้โดยตรงผ่าน Google Maps API ทำให้ลูกค้าและร้านค้าเช็คตำแหน่งได้แม่นยำ"
           },
           {
             img: "images/f4.jpg",
-            title: "API Documentation",
-            text: "มีการจัดทำคู่มือ API ด้วย Swagger (@nestjs/swagger) ทำให้ง่ายต่อการทดสอบและสื่อสารระหว่างทีม Frontend และ Backend พร้อมระบบ Validation ด้วย class-validator ก่อนบันทึกข้อมูล"
+            title: "Admin Dashboard",
+            text: "ฝั่งเจ้าของร้านสามารถจัดการระบบได้ทั้งหมด ดูออเดอร์ เพิ่ม ลบ หรือแก้ไขข้อมูลต่างๆ ได้ครบจบในที่เดียว"
+          },
+          {
+            img: "images/f7.jpg",
+            title: "LINE Bot Notification",
+            text: "เมื่อมีออเดอร์ใหม่เข้ามา ระบบจะแจ้งเตือนไปยัง LINE ส่วนตัวของร้านค้าผ่าน LINE Bot อัตโนมัติ"
           }
         ]
       }
