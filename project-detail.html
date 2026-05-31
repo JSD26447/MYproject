@@ -979,6 +979,68 @@
             text: "ใบประกาศและผลการวิเคราะห์ข้อมูล"
           }
         ]
+      },
+      'picmatch': {
+        title: "PicMatch ระบบค้นหารูปภาพอัจฉริยะ",
+        desc: "ระบบค้นหารูปภาพอัจฉริยะด้วยเทคโนโลยี AI รองรับการค้นหาภาพที่แม่นยำและการวิเคราะห์ด้วย Machine Learning",
+        type: "Web Application / AI",
+        stack: "Python, AI Models, Django",
+        role: "AI Developer",
+        timeline: "1 เดือน",
+        links: { github: "https://github.com/JSD26447/Picmatch.git", youtube: "https://youtu.be/OCVuSq4VVA0" },
+        slides: [
+          {
+            img: "images/Pic1.png",
+            title: "PicMatch: AI Image Search",
+            text: "ระบบค้นหารูปภาพอัจฉริยะ ช่วยค้นหารูปของตัวเองในงานอีเวนต์ได้อย่างรวดเร็วในไม่กี่วินาที ช่วยลดภาระการคัดแยกรูปของทีมงาน"
+          },
+          {
+            img: "images/Pic2.png",
+            title: "ระบบค้นหา (Smart Search)",
+            text: "อัปโหลดเพียงรูปเซลฟี่ ระบบจะใช้ AI วิเคราะห์ใบหน้า (Face Recognition) และอ่านตัวอักษร (OCR) บนป้ายเพื่อความแม่นยำสูงสุด"
+          },
+          {
+            img: "images/Pic3.png?v=2",
+            title: "ผลการค้นหาและดาวน์โหลด",
+            text: "แสดงผลรูปภาพทั้งหมดที่ตรงกัน พร้อมฟังก์ชัน Bulk Download ให้ผู้ใช้งานดาวน์โหลดรูปทั้งหมดเป็นไฟล์ ZIP ได้ทันที"
+          },
+          {
+            img: "images/Pic5.png",
+            title: "เชื่อมต่อ Google Drive (Admin)",
+            text: "แอดมินไม่ต้องอัปโหลดทีละรูป เพียงใส่ลิงก์ Google Drive ระบบจะดึงรูปภาพทั้งหมดมาสแกนวิเคราะห์ให้อัตโนมัติ"
+          }
+        ]
+      },
+      'fertilizer': {
+        title: "Fertilizer Sales System",
+        desc: "ระบบบริหารจัดการการขายปุ๋ยครบวงจร (Modern Web Application) ที่แบ่งการทำงานเป็นส่วน Frontend สำหรับลูกค้าและแอดมิน และ Backend สำหรับประมวลผลธุรกิจและจัดการฐานข้อมูล",
+        type: "Web Application",
+        stack: "Angular 21, NestJS 11, PostgreSQL, TypeORM",
+        role: "Full-Stack Developer",
+        timeline: "Current",
+        links: { github: "https://github.com/JSD26447/Fertilizer.git", website: "https://fertilizer-tau.vercel.app/" },
+        slides: [
+          {
+            img: "images/f1.jpg",
+            title: "Frontend Architecture (Angular)",
+            text: "พัฒนาด้วย Angular 21 และ TypeScript พร้อมใช้งาน RxJS จัดการ Asynchronous Operation มีโครงสร้างโปรเจกต์ที่เป็นระเบียบด้วย Component-based Architecture และมี Routing รองรับสิทธิ์ผู้ใช้งานที่แตกต่างกัน"
+          },
+          {
+            img: "images/f2.jpg",
+            title: "Backend Services (NestJS)",
+            text: "ระบบ Backend พัฒนาด้วย NestJS 11 รองรับสถาปัตยกรรม OOP และ Dependency Injection ที่เข้ากันได้ดีกับ Angular ใช้ Passport.js และ JWT สำหรับการ Authentication รวมถึงเข้ารหัสผ่านด้วย bcrypt"
+          },
+          {
+            img: "images/f3.jpg",
+            title: "Database Management (PostgreSQL)",
+            text: "เชื่อมต่อกับฐานข้อมูล PostgreSQL ที่โฮสต์บน Supabase ใช้ TypeORM เพื่อจัดการ Database Schema แบบ Object-Oriented ช่วยลดความซับซ้อนในการจัดการข้อมูล"
+          },
+          {
+            img: "images/f4.jpg",
+            title: "API Documentation",
+            text: "มีการจัดทำคู่มือ API ด้วย Swagger (@nestjs/swagger) ทำให้ง่ายต่อการทดสอบและสื่อสารระหว่างทีม Frontend และ Backend พร้อมระบบ Validation ด้วย class-validator ก่อนบันทึกข้อมูล"
+          }
+        ]
       }
     };
 
