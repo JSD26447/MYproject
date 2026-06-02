@@ -324,6 +324,11 @@
       border: 1px solid var(--border);
     }
 
+    .btn-drive {
+      background: #0f9d58; /* Google Drive green */
+      color: white;
+    }
+
     .btn svg {
       width: 18px;
       height: 18px;
@@ -987,7 +992,11 @@
         stack: "Python, AI Models, Django",
         role: "AI Developer",
         timeline: "1 เดือน",
-        links: { github: "https://github.com/JSD26447/Picmatch.git", youtube: "https://youtu.be/OCVuSq4VVA0" },
+        links: { 
+          github: "https://github.com/JSD26447/Picmatch.git", 
+          youtube: "https://youtu.be/OCVuSq4VVA0",
+          drive: "https://drive.google.com/file/d/1LNGtZTgRGAabdWzUNfShvkvcFJUfubfz/view?usp=sharing"
+        },
         slides: [
           {
             img: "images/Pic1.png",
@@ -1013,9 +1022,9 @@
       },
       'fertilizer': {
         title: "Fertilizer Sales System",
-        desc: "ระบบบริหารจัดการการขายปุ๋ยครบวงจร (Modern Web Application) ที่แบ่งการทำงานเป็นส่วน Frontend สำหรับลูกค้าและแอดมิน และ Backend สำหรับประมวลผลธุรกิจและจัดการฐานข้อมูล",
-        type: "Web Application",
-        stack: "Angular 21, NestJS 11, PostgreSQL, TypeORM",
+        desc: "ระบบบริหารจัดการการขายปุ๋ยครบวงจร (Modern Web Application) ที่ยกระดับประสิทธิภาพด้วยระบบ AI Chat Assistant จากการทำ RAG (Retrieval-Augmented Generation) และเชื่อมต่อผ่าน Gemini API Key เพื่อทำหน้าที่ตอบคำถาม ให้คำแนะนำสูตรปุ๋ย และเช็คสต็อกสินค้าให้แก่ลูกค้าได้อย่างเรียลไทม์ แม่นยำ",
+        type: "Web Application / AI Integration",
+        stack: "Angular 21, NestJS 11, RAG, Gemini API, PostgreSQL, TypeORM",
         role: "Full-Stack Developer",
         timeline: "Current",
         links: { 
@@ -1048,6 +1057,11 @@
             img: "images/f7.jpg",
             title: "LINE Bot Notification",
             text: "เมื่อมีออเดอร์ใหม่เข้ามา ระบบจะแจ้งเตือนไปยัง LINE ส่วนตัวของร้านค้าผ่าน LINE Bot อัตโนมัติ"
+          },
+          {
+            img: "images/f8.png",
+            title: "RAG AI Chat Assistant (แชทบอทแนะนำปุ๋ยอัจฉริยะ)",
+            text: "ระบบแชทบอทตอบคำถามและวิเคราะห์แนะนำสูตรปุ๋ยแก่ลูกค้าได้แบบเรียลไทม์ โดยใช้เทคโนโลยี RAG (Retrieval-Augmented Generation) เชื่อมต่อผ่าน Gemini API Key ดึงข้อมูลประเภทปุ๋ย ข้อมูลสต็อก และข้อมูลจำเพาะมาตอบได้อย่างแม่นยำ"
           }
         ]
       }
@@ -1073,11 +1087,12 @@
       document.getElementById('infoTimeline').innerText = projectData.timeline || '-';
 
       const btnsContainer = document.getElementById('actionBtns');
-      const icons = {
+       const icons = {
         youtube: `<svg viewBox="0 0 24 24"><path d="M21.582 6.186a2.506 2.506 0 00-1.766-1.777C18.261 4 12 4 12 4s-6.262 0-7.816.409a2.506 2.506 0 00-1.766 1.777C2 7.746 2 12 2 12s0 4.254.418 5.814a2.506 2.506 0 001.766 1.777C5.738 20 12 20 12 20s6.261 0 7.816-.409a2.506 2.506 0 001.766-1.777C22 16.254 22 12 22 12s0-4.254-.418-5.814zM9.99 15.474v-6.94l6.268 3.473-6.268 3.467z"/></svg>`,
         github: `<svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.447-1.27.098-2.646 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.114 2.504.336 1.909-1.295 2.747-1.026 2.747-1.026.547 1.376.203 2.393.1 2.646.64.698 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>`,
         colab: `<svg viewBox="0 0 24 24"><path d="M12.43 14.34c-1.12.87-2.73.96-3.82.26l-.68-.44.02 1.34c.03 2.05 1.54 3.71 3.39 3.71 1.7 0 3.12-1.4 3.33-3.18l-2.24-1.69z" /><path d="M11.57 9.66c1.12-.87 2.73-.96 3.82-.26l.68.44-.02-1.34c-.03-2.05-1.54-3.71-3.39-3.71-1.7 0-3.12 1.4-3.33 3.18l2.24 1.69z" /><path d="M16.92 15.11c-.34.34-.84.34-1.19 0l-4.16-4.16c-.34-.34-.34-.84 0-1.19s.84-.34 1.19 0l4.16 4.16c.33.33.33.84 0 1.19z" /><path d="M7.08 8.89c.34-.34.84-.34 1.19 0l4.16 4.16c.34.34.34.84 0 1.19s-.84.34-1.19 0L7.08 10.08c-.33-.33-.33-.84 0-1.19z" /></svg>`,
-        website: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`
+        website: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
+        drive: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`
       };
 
       btnsContainer.innerHTML = '';
@@ -1093,6 +1108,9 @@
         }
         if (projectData.links.website) {
           btnsContainer.innerHTML += `<a href="${projectData.links.website}" target="_blank" class="btn btn-link">${icons.website} ไปที่เว็บไซต์</a>`;
+        }
+        if (projectData.links.drive) {
+          btnsContainer.innerHTML += `<a href="${projectData.links.drive}" target="_blank" class="btn btn-drive">${icons.drive} เอกสารโปรเจกต์ (Google Drive)</a>`;
         }
       }
 
