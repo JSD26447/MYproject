@@ -1824,6 +1824,655 @@
     .hero-shape2 {
       will-change: transform;
     }
+
+    /* ========== GRAPHIC DESIGN SECTION ========== */
+    .graphic-section {
+      padding: 7rem 0;
+      background: linear-gradient(160deg, #0d0d0d 0%, #111111 50%, #0a0a0a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .graphic-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 212, 0, 0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .graphic-section::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 212, 0, 0.03) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Gallery Grid */
+    .graphic-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    /* Flip Card */
+    .graphic-card {
+      perspective: 1200px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .graphic-card-inner {
+      position: relative;
+      width: 100%;
+      padding-top: 130%;
+      border-radius: 20px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .graphic-card:hover .graphic-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .graphic-card-front,
+    .graphic-card-back {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      overflow: hidden;
+    }
+
+    .graphic-card-front img,
+    .graphic-card-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .graphic-card-back {
+      transform: rotateY(180deg);
+      background: #111;
+    }
+
+    /* Image overlay label */
+    .graphic-card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.2rem 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .graphic-card-label h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .graphic-card-label p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+    }
+
+    /* Flip hint badge */
+    .flip-hint {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 212, 0, 0.15);
+      border: 1px solid rgba(255, 212, 0, 0.3);
+      color: var(--gold);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.6rem;
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
+      text-transform: uppercase;
+    }
+
+    /* Description Block */
+    .graphic-desc-block {
+      margin-top: 2.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .graphic-desc-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    .graphic-desc-text h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .graphic-desc-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .graphic-drive-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: #0d0d0d;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .graphic-drive-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 212, 0, 0.35);
+    }
+
+    .graphic-drive-btn svg {
+      flex-shrink: 0;
+    }
+
+    /* Design tags */
+    .graphic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .graphic-tag {
+      background: rgba(255, 212, 0, 0.1);
+      border: 1px solid rgba(255, 212, 0, 0.25);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 30px;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 700px) {
+      .graphic-gallery {
+        grid-template-columns: 1fr;
+      }
+      .graphic-desc-block {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+    }
+
+    /* Work item header (01 / 02) */
+    .graphic-work-header {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .graphic-work-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.25;
+      line-height: 1;
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0;
+    }
+
+    .graphic-work-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin: 0 0 0.2rem;
+    }
+
+    .graphic-work-sub {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    /* Section Divider */
+    .graphic-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3.5rem 0 0;
+      color: var(--text-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .graphic-divider::before,
+    .graphic-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .graphic-divider span {
+      color: rgba(255, 212, 0, 0.5);
+      white-space: nowrap;
+    }
+
+    /* E-sports Showcase */
+    .graphic-esports-showcase {
+      margin-top: 1.5rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.6);
+    }
+
+    .graphic-esports-img-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .graphic-esports-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .graphic-esports-showcase:hover .graphic-esports-img-wrap img {
+      transform: scale(1.02);
+    }
+
+    .graphic-esports-overlay {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+    }
+
+    .graphic-esports-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 212, 0, 0.3);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      text-transform: uppercase;
+    }
+
+    /* Thumbnail Grid (Work 03) */
+    .graphic-thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .graphic-thumb-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+
+    .graphic-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .graphic-thumb-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .graphic-thumb-label {
+      position: absolute;
+      bottom: 0.7rem;
+      right: 0.7rem;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,212,0,0.3);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .graphic-thumb-grid {
+        grid-template-columns: 1fr;
+      }
+      .graphic-petanque-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Petanque 2x2 Grid (Work 04) */
+    .graphic-petanque-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Work 06 System & Background Layout */
+    .graphic-sys-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .graphic-sys-hero {
+      width: 100%;
+    }
+
+    .graphic-sys-hero .graphic-thumb-item {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .graphic-sys-hero .graphic-thumb-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 480px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .graphic-sys-hero .graphic-thumb-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .graphic-sys-hero-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .graphic-sys-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,212,0,0.15);
+      border: 1px solid rgba(255,212,0,0.4);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+
+    .graphic-sys-hero-label p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .graphic-sys-row2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .graphic-sys-row2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Work 04 Logo Competition */
+    .graphic-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .graphic-logo-item {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+    }
+
+    .graphic-logo-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      display: block;
+      padding: 1.5rem;
+      background: #161616;
+      transition: transform 0.5s ease;
+    }
+
+    .graphic-logo-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .graphic-logo-award {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,212,0,0.5);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 30px;
+    }
+
+    .award-tag {
+      background: rgba(255,180,0,0.15) !important;
+      border-color: rgba(255,180,0,0.5) !important;
+      color: #FFD400 !important;
+      font-weight: 700 !important;
+    }
+
+    @media (max-width: 600px) {
+      .graphic-logo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== LIGHTBOX ===== */
+    #graphic-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      cursor: zoom-out;
+    }
+    #graphic-lightbox.open {
+      display: flex;
+      animation: lbFadeIn 0.25s ease;
+    }
+    @keyframes lbFadeIn {
+      from { opacity:0; transform: scale(0.96); }
+      to   { opacity:1; transform: scale(1); }
+    }
+    #graphic-lightbox img {
+      max-width: min(90vw, 1100px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.7);
+      cursor: default;
+      user-select: none;
+    }
+    #lb-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.4rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10000;
+    }
+    #lb-close:hover { background: rgba(255,255,255,0.25); }
+    #lb-caption {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Clickable cursor on all graphic images */
+    #graphic .graphic-thumb-item img,
+    #graphic .graphic-card img,
+    #graphic .graphic-esports-img-wrap img,
+    #graphic .graphic-sys-hero img,
+    #graphic .graphic-logo-item img {
+      cursor: zoom-in;
+    }
+
+    /* ===== MOBILE RESPONSIVE — Graphic Section ===== */
+    @media (max-width: 768px) {
+      .graphic-gallery {
+        grid-template-columns: 1fr;
+      }
+      .graphic-desc-block {
+        flex-direction: column;
+        padding: 1.2rem;
+        gap: 1rem;
+      }
+      .graphic-desc-icon {
+        font-size: 1.8rem;
+      }
+      .graphic-desc-text h3 {
+        font-size: 1.1rem;
+      }
+      .graphic-desc-text p {
+        font-size: 0.85rem;
+        line-height: 1.7;
+      }
+      .graphic-tags {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .graphic-tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+      }
+      .graphic-work-header {
+        gap: 0.8rem;
+        padding: 1rem 1.2rem;
+      }
+      .graphic-work-num {
+        font-size: 2.5rem;
+      }
+      .graphic-work-title {
+        font-size: 1rem;
+      }
+      .graphic-work-sub {
+        font-size: 0.78rem;
+      }
+      .graphic-drive-btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+      }
+      .graphic-logo-grid {
+        grid-template-columns: 1fr;
+      }
+      .graphic-logo-item img {
+        height: 220px;
+      }
+      .graphic-thumb-grid {
+        grid-template-columns: 1fr;
+      }
+      .graphic-petanque-grid {
+        grid-template-columns: 1fr;
+      }
+      .graphic-sys-row2 {
+        grid-template-columns: 1fr;
+      }
+      .graphic-sys-hero img {
+        max-height: 260px;
+      }
+      .graphic-divider span {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.9rem;
+      }
+    }
   </style>
 </head>
 
@@ -1841,6 +2490,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#graphic">Graphic</a>
       <a href="#projects">Projects</a>
       <a href="#internship">Internship</a>
       <a href="#contact" class="nav-cta">Contact</a>
@@ -1946,17 +2596,19 @@
           <div class="section-label">About Me</div>
           <h2 class="section-title">Lifelong Learner,<br>Problem Solver</h2>
           <p class="about-bio">
-            ผู้สนใจด้าน Software Development ที่มีประสบการณ์ในการพัฒนาและปรับปรุงระบบสารสนเทศ
-            รวมถึงมีส่วนร่วมในการพัฒนาแพลตฟอร์มดิจิทัลเพื่อสนับสนุนโครงการด้านเศรษฐกิจดิจิทัล
-            มีความเข้าใจในกระบวนการทำงานของระบบตั้งแต่การวิเคราะห์ความต้องการผู้ใช้งาน (Requirement)
-            การออกแบบโครงสร้างการทำงาน (Workflow) ไปจนถึงการนำไปใช้งานจริง มีความถนัดในการวางแผนและออกแบบ Workflow
-            เพื่อเพิ่มประสิทธิภาพการดำเนินงาน
+            มีประสบการณ์ด้านงานออกแบบและพัฒนาระบบจริงจากการฝึกสหกิจศึกษากับ
+            <strong>สำนักงานส่งเสริมเศรษฐกิจดิจิทัล (depa)</strong>
+            รวมถึงมีความสนใจและพัฒนาทักษะด้านงานออกแบบอย่างต่อเนื่อง
+            โดยมีประสบการณ์รับผิดชอบงานกราฟิกและสื่อประชาสัมพันธ์ให้กับเพจ
+            <strong>ชมรมเปตองมหาวิทยาลัยอุบลราชธานี</strong>
+            นอกจากนี้ยังมีประสบการณ์ออกแบบหน้าตาของระบบและพัฒนาทักษะด้าน
+            <strong>UX/UI Design</strong> รวมถึงการรับงานฟรีแลนซ์ด้านกราฟิก
+            เช่น การออกแบบสื่อสำหรับแพลตฟอร์มต่าง ๆ และการออกแบบเว็บไซต์
             <br><br>
-            สามารถประสานงานร่วมกับทีมพัฒนา (Developer) และผู้ที่เกี่ยวข้องได้อย่างมีประสิทธิภาพ
-            มีทักษะในการติดตามความคืบหน้าของโครงการ วิเคราะห์ปัญหา และเสนอแนวทางแก้ไขอย่างเป็นระบบ
-            พร้อมทั้งมีความสามารถในการสื่อสารข้อมูลทางเทคนิคให้เข้าใจง่าย มีประสบการณ์เคยพัฒนาระบบต่างๆ
-            ทำให้มองเห็นภาพและวางแผนได้ง่ายขึ้น และจะมุ่งมั่นในการพัฒนาทักษะด้านเทคโนโลยีและการบริหารจัดการโครงการ
-            เพื่อสนับสนุนให้การดำเนินงานเป็นไปตามเป้าหมาย และสร้างผลลัพธ์ที่มีประสิทธิภาพต่อองค์กร
+            ด้วยประสบการณ์และความสนใจด้านงานออกแบบจึงต้องการนำทักษะด้านกราฟิก
+            การออกแบบ และการคิดเชิงสร้างสรรค์มาประยุกต์ใช้ในการทำงาน
+            พร้อมเรียนรู้และพัฒนาตนเองอย่างต่อเนื่อง
+            เพื่อสร้างผลงานที่สามารถตอบโจทย์ความต้องการขององค์กรได้อย่างมีประสิทธิภาพ
           </p>
           <div class="about-info-grid">
             <div class="about-info-item">
@@ -2053,7 +2705,483 @@
             <span class="skill-tag">Web Services Integration</span>
           </div>
         </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🎨</div>
+          <h3>Graphic Design</h3>
+          <div class="skill-tags">
+            <span class="skill-tag accent">Adobe Illustrator</span>
+            <span class="skill-tag accent">Photoshop</span>
+            <span class="skill-tag accent">Figma</span>
+            <span class="skill-tag">CapCut</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Bootstrap</span>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- GRAPHIC DESIGN -->
+  <section class="graphic-section" id="graphic">
+    <div class="section-inner fade-up">
+      <div class="section-label">Graphic Design</div>
+      <h2 class="section-title">ผลงานออกแบบกราฟิก</h2>
+      <p class="section-sub">งานออกแบบที่ผสมผสานศิลปะดั้งเดิมกับสไตล์ร่วมสมัย</p>
+
+      <!-- Work 01 Header -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">01</div>
+        <div>
+          <h3 class="graphic-work-title">ลวดลายไทย</h3>
+          <p class="graphic-work-sub">Thai Pattern · Front &amp; Back · Print Design</p>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="graphic-gallery reveal-stagger">
+
+        <!-- Card 1: ลายไทย Front -->
+        <div class="graphic-card" title="Hover เพื่อดูด้านหลัง">
+          <div class="graphic-card-inner">
+            <div class="graphic-card-front">
+              <img src="images/ลายไทยFront.png" alt="ลายไทย Front Design" loading="lazy">
+              <div class="flip-hint">↺ Hover</div>
+              <div class="graphic-card-label">
+                <h4>ลายไทย — Front</h4>
+                <p>ด้านหน้า · Thai Pattern Design</p>
+              </div>
+            </div>
+            <div class="graphic-card-back">
+              <img src="images/ลายไทยBack.png" alt="ลายไทย Back Design" loading="lazy">
+              <div class="graphic-card-label">
+                <h4>ลายไทย — Back</h4>
+                <p>ด้านหลัง · Thai Pattern Design</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: ลายไทย Back -->
+        <div class="graphic-card" title="Hover เพื่อดูด้านหน้า">
+          <div class="graphic-card-inner">
+            <div class="graphic-card-front">
+              <img src="images/ลายไทยBack.png" alt="ลายไทย Back Design" loading="lazy">
+              <div class="flip-hint">↺ Hover</div>
+              <div class="graphic-card-label">
+                <h4>ลายไทย — Back</h4>
+                <p>ด้านหลัง · Thai Pattern Design</p>
+              </div>
+            </div>
+            <div class="graphic-card-back">
+              <img src="images/ลายไทยFront.png" alt="ลายไทย Front Design" loading="lazy">
+              <div class="graphic-card-label">
+                <h4>ลายไทย — Front</h4>
+                <p>ด้านหน้า · Thai Pattern Design</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Description Block -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🎨</div>
+        <div class="graphic-desc-text">
+          <h3>เกี่ยวกับงานออกแบบ</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">ลายไทย</span>
+            <span class="graphic-tag">Graphic Design</span>
+            <span class="graphic-tag">Thai Art</span>
+            <span class="graphic-tag">Print Design</span>
+          </div>
+          <p>
+            งานออกแบบลวดลายไทยชุดนี้ได้รับแรงบันดาลใจมาจากศิลปะโบราณของไทย
+            โดยนำลวดลายดั้งเดิมมาตีความใหม่ในสไตล์ร่วมสมัย ผสมผสานรายละเอียด
+            ของลายไทยคลาสสิกเข้ากับการจัดวางองค์ประกอบที่ทันสมัย
+            ทั้งด้านหน้า (Front) และด้านหลัง (Back) ได้รับการออกแบบให้มีความสมดุลและ
+            ต่อเนื่องกัน เหมาะสำหรับงานพิมพ์และสื่อดิจิทัล
+          </p>
+          <a href="https://drive.google.com/drive/folders/1zaTWyk36jPWo2Bk3hmxTZj4oHtKUUvkh?usp=drive_link"
+            target="_blank" rel="noopener noreferrer" class="graphic-drive-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            ดูไฟล์ลายไทยใน Google Drive
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 2</span></div>
+
+      <!-- Work 02 Header -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">02</div>
+        <div>
+          <h3 class="graphic-work-title">เสื้อ E-sports</h3>
+          <p class="graphic-work-sub">Jersey Design · Esports · Apparel Branding</p>
+        </div>
+      </div>
+
+      <!-- E-sports Showcase -->
+      <div class="graphic-esports-showcase reveal">
+        <div class="graphic-esports-img-wrap">
+          <img src="images/เสื้อ E-sports.png" alt="เสื้อ E-sports Design" loading="lazy">
+          <div class="graphic-esports-overlay">
+            <div class="graphic-esports-badge">🎮 E-sports Jersey</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Block 2: E-sports -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🎮</div>
+        <div class="graphic-desc-text">
+          <h3>เสื้อ E-sports</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">E-sports</span>
+            <span class="graphic-tag">Jersey Design</span>
+            <span class="graphic-tag">Apparel</span>
+            <span class="graphic-tag">Branding</span>
+          </div>
+          <p>
+            งานออกแบบเสื้อสำหรับทีม E-sports โดยเน้นสไตล์ที่ดูแข็งแกร่งและทันสมัย
+            ผสมผสานสีสันที่โดดเด่น กราฟิกที่คมชัด และองค์ประกอบของแบรนด์อย่างลงตัว
+            เหมาะสำหรับการแข่งขันและการโชว์ตัวตนของทีมในโลกอีสปอร์ต
+          </p>
+          <a href="https://drive.google.com/drive/folders/1omI4kDjxOhS8OtrHqFjKUfY3t2Kbe9f1?usp=sharing"
+            target="_blank" rel="noopener noreferrer" class="graphic-drive-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            ดูไฟล์เสื้อ E-sports ใน Google Drive
+          </a>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 3</span></div>
+
+      <!-- Work 03 Header: เสื้อบอลมือโกล -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">03</div>
+        <div>
+          <h3 class="graphic-work-title">เสื้อบอลมือโกล — GOLBAL02</h3>
+          <p class="graphic-work-sub">Football Jersey Mockup · Front &amp; Back · Apparel Design</p>
+        </div>
+      </div>
+
+      <!-- GOLBAL02 Flip Cards -->
+      <div class="graphic-gallery reveal-stagger">
+        <div class="graphic-card" title="Hover เพื่อดูด้านหลัง">
+          <div class="graphic-card-inner">
+            <div class="graphic-card-front">
+              <img src="images/Mockup_Front GOLBAL02.png" alt="Mockup Front GOLBAL02" loading="lazy">
+              <div class="flip-hint">↺ Hover</div>
+              <div class="graphic-card-label">
+                <h4>Mockup Front</h4>
+                <p>ด้านหน้า · Football Jersey</p>
+              </div>
+            </div>
+            <div class="graphic-card-back">
+              <img src="images/Mockup_Back - GOLBAL02.png" alt="Mockup Back GOLBAL02" loading="lazy">
+              <div class="graphic-card-label">
+                <h4>Mockup Back</h4>
+                <p>ด้านหลัง · Football Jersey</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="graphic-card" title="Hover เพื่อดูด้านหน้า">
+          <div class="graphic-card-inner">
+            <div class="graphic-card-front">
+              <img src="images/Mockup_Back - GOLBAL02.png" alt="Mockup Back GOLBAL02" loading="lazy">
+              <div class="flip-hint">↺ Hover</div>
+              <div class="graphic-card-label">
+                <h4>Mockup Back</h4>
+                <p>ด้านหลัง · Football Jersey</p>
+              </div>
+            </div>
+            <div class="graphic-card-back">
+              <img src="images/Mockup_Front GOLBAL02.png" alt="Mockup Front GOLBAL02" loading="lazy">
+              <div class="graphic-card-label">
+                <h4>Mockup Front</h4>
+                <p>ด้านหน้า · Football Jersey</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description Block 3: GOLBAL02 -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">⚽</div>
+        <div class="graphic-desc-text">
+          <h3>เสื้อบอลมือโกล — GOLBAL02</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">Football Jersey</span>
+            <span class="graphic-tag">Mockup Design</span>
+            <span class="graphic-tag">Goalkeeper</span>
+            <span class="graphic-tag">Apparel</span>
+          </div>
+          <p>
+            งานออกแบบเสื้อบอลมือโกล (Goalkeeper Jersey) สไตล์ GOLBAL02
+            นำเสนอทั้งด้านหน้า (Front) และด้านหลัง (Back)
+            เน้นสีสันที่โดดเด่นและการจัดวางองค์ประกอบที่เป็นเอกลักษณ์
+            เหมาะสำหรับเสนอสินค้าหรือใช้เป็นเลยาออกแบบเสื้อทีมกีฬา
+          </p>
+          <a href="https://drive.google.com/drive/folders/1G7LfAOGHi4pNltAMaMaD2yh5hdG7fVCA?usp=sharing"
+            target="_blank" rel="noopener noreferrer" class="graphic-drive-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            ดูไฟล์เสื้อบอลใน Google Drive
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 4</span></div>
+
+      <!-- Work 04 Header: Logo แข่งขัน -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">04</div>
+        <div>
+          <h3 class="graphic-work-title">แข่งขันออกแบบ Logo สาขา — รางวัลอันดับที่ 3 🥉</h3>
+          <p class="graphic-work-sub">Logo Design Competition · Brand Identity · Award Winner</p>
+        </div>
+      </div>
+
+      <!-- Logo Award Showcase -->
+      <div class="graphic-logo-grid reveal-stagger">
+        <div class="graphic-thumb-item graphic-logo-item">
+          <img src="images/ART_LOGO.jpg" alt="Logo Design ART" loading="lazy">
+          <div class="graphic-logo-award">
+            <span>🥉 อันดับ 3</span>
+          </div>
+          <div class="graphic-thumb-label"><span>ต้นแบบ</span></div>
+        </div>
+        <div class="graphic-thumb-item graphic-logo-item">
+          <img src="images/logo2.jpg" alt="Logo Design Final" loading="lazy">
+          <div class="graphic-logo-award">
+            <span>🏆 Final</span>
+          </div>
+          <div class="graphic-thumb-label"><span>สุดท้าย</span></div>
+        </div>
+      </div>
+
+      <!-- Description Block 4: Logo -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🎯</div>
+        <div class="graphic-desc-text">
+          <h3>แข่งขันออกแบบ Logo สาขา — ได้รับรางวัลอันดับที่ 3</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag award-tag">🥉 อันดับ 3</span>
+            <span class="graphic-tag">Logo Design</span>
+            <span class="graphic-tag">Brand Identity</span>
+            <span class="graphic-tag">Competition</span>
+            <span class="graphic-tag">University</span>
+          </div>
+          <p>
+            ผลงานออกแบบ Logo สำหรับสาขาวิชาเทคโนโลยีสารสนเทศและการสื่อสาร ในการแข่งขันออกแบบ Logo ระดับสาขา
+            สามารถคว้ารางวัล <strong>อันดับที่ 3</strong> ได้สำเร็จ
+            เน้นอัตลักษณ์ของสาขา ความเป็นอันหนึ่ง เข้าใจง่าย และความทันสมัย สื่อถึงความเป็นเอกลักษณ์ของสาขาวิชา
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 5</span></div>
+
+      <!-- Work 05 Header -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">05</div>
+        <div>
+          <h3 class="graphic-work-title">ตัดปกคลิป — Dead by Daylight</h3>
+          <p class="graphic-work-sub">Thumbnail Design · Clip Cover · Gaming Content</p>
+        </div>
+      </div>
+
+      <!-- Deadby Thumbnail Grid -->
+      <div class="graphic-thumb-grid reveal-stagger">
+        <div class="graphic-thumb-item">
+          <img src="images/Deadby01.png" alt="Dead by Daylight Thumbnail 01" loading="lazy">
+          <div class="graphic-thumb-label"><span>01</span></div>
+        </div>
+        <div class="graphic-thumb-item">
+          <img src="images/Deadby02.png" alt="Dead by Daylight Thumbnail 02" loading="lazy">
+          <div class="graphic-thumb-label"><span>02</span></div>
+        </div>
+        <div class="graphic-thumb-item">
+          <img src="images/Deadby03.png" alt="Dead by Daylight Thumbnail 03" loading="lazy">
+          <div class="graphic-thumb-label"><span>03</span></div>
+        </div>
+      </div>
+
+      <!-- Description Block 3 -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🎥</div>
+        <div class="graphic-desc-text">
+          <h3>ตัดปกคลิป — Dead by Daylight</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">Thumbnail Design</span>
+            <span class="graphic-tag">Clip Cover</span>
+            <span class="graphic-tag">Gaming</span>
+            <span class="graphic-tag">Dead by Daylight</span>
+          </div>
+          <p>
+            งานออกแบบปกคลิปวิดีโอสไตล์เกม Dead by Daylight โดยเน้นบรรยากาศดาร์คและน่าตื่นเต้น
+            ผสมผสานสีโทนมืด เอฟเฟกต์แสงไฟ และองค์ประกอบกราฟิกสไตล์ Horror Gaming
+            ออกแบบมาให้ดึงดูดสายตาและสื่อถึงเนื้อหาของคลิปได้ทันที
+          </p>
+          <a href="https://drive.google.com/drive/folders/1L-HJeVRNpSL4YdPO3D_1nuFjwLGJhDcy?usp=sharing"
+            target="_blank" rel="noopener noreferrer" class="graphic-drive-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            ดูไฟล์ปกคลิปใน Google Drive
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 6</span></div>
+
+      <!-- Work 05 Header -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">06</div>
+        <div>
+          <h3 class="graphic-work-title">งานกราฟิกชมรมเปตอง — ม.อุบลราชธานี</h3>
+          <p class="graphic-work-sub">Club Graphic · Vinyl Banner · Poster · 3D Map</p>
+        </div>
+      </div>
+
+      <!-- Petanque 2x2 Grid -->
+      <div class="graphic-petanque-grid reveal-stagger">
+        <div class="graphic-thumb-item">
+          <img src="images/ทำป้ายไวนิล.jpg" alt="ทำป้ายไวนิล" loading="lazy">
+          <div class="graphic-thumb-label"><span>ป้ายไวนิล</span></div>
+        </div>
+        <div class="graphic-thumb-item">
+          <img src="images/ทำโปรเตอร์รับสมัคร.jpg" alt="ทำโปรเตอร์รับสมัคร" loading="lazy">
+          <div class="graphic-thumb-label"><span>โปสเตอร์รับสมัคร</span></div>
+        </div>
+        <div class="graphic-thumb-item">
+          <img src="images/ทำเเผนที่ชมรม3D.jpg" alt="ทำแผนที่ชมรม3D" loading="lazy">
+          <div class="graphic-thumb-label"><span>แผนที่ชมรม 3D</span></div>
+        </div>
+        <div class="graphic-thumb-item">
+          <img src="images/ป้ายไวนิล.png" alt="ป้ายไวนิล Final" loading="lazy">
+          <div class="graphic-thumb-label"><span>ป้ายไวนิล (Final)</span></div>
+        </div>
+      </div>
+
+      <!-- Description Block 4 -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🏅</div>
+        <div class="graphic-desc-text">
+          <h3>งานกราฟิกชมรมเปตอง — ม.อุบลราชธานี</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">Club Graphic</span>
+            <span class="graphic-tag">Vinyl Banner</span>
+            <span class="graphic-tag">Poster</span>
+            <span class="graphic-tag">3D Map</span>
+            <span class="graphic-tag">University</span>
+          </div>
+          <p>
+            งานออกแบบกราฟิกให้กับชมรมเปตองมหาวิทยาลัยอุบลราชธานี ประกอบด้วยหลายงาน
+            ได้แก่ ป้ายไวนิลประชาสัมพันธ์ชมรม โปสเตอร์รับสมัครสมาชิก
+            และแผนที่ 3D แสดงพื้นที่ชมรม เพื่อใช้ในการประชาสัมพันธ์และดึงดูดนักศึกษาใหม่
+          </p>
+          <a href="https://drive.google.com/drive/folders/1jfEpH78DzpBVog5px_KbEeaxq_Sc6ysu?usp=sharing"
+            target="_blank" rel="noopener noreferrer" class="graphic-drive-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+            ดูไฟล์งานชมรมใน Google Drive
+          </a>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="graphic-divider reveal"><span>ผลงานชิ้นที่ 7</span></div>
+
+      <!-- Work 06 Header -->
+      <div class="graphic-work-header reveal">
+        <div class="graphic-work-num">07</div>
+        <div>
+          <h3 class="graphic-work-title">หน้าระบบและกราฟิกพื้นหลัง</h3>
+          <p class="graphic-work-sub">UI / System Design · Background Graphic · Web Interface</p>
+        </div>
+      </div>
+
+      <!-- Work 06 Gallery Layout -->
+      <div class="graphic-sys-layout reveal-stagger">
+
+        <!-- Row 1: Pic1 full-width hero -->
+        <div class="graphic-sys-hero">
+          <div class="graphic-thumb-item">
+            <img src="images/Pic1.png" alt="System Interface Pic1" loading="lazy">
+            <div class="graphic-sys-hero-label">
+              <span class="graphic-sys-badge">🖥️ System UI</span>
+              <p>หน้าระบบหลัก</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: f1 + f4 -->
+        <div class="graphic-sys-row2">
+          <div class="graphic-thumb-item">
+            <img src="images/f1.jpg" alt="Background Graphic f1" loading="lazy">
+            <div class="graphic-thumb-label"><span>01</span></div>
+          </div>
+          <div class="graphic-thumb-item">
+            <img src="images/f4.jpg" alt="Background Graphic f4" loading="lazy">
+            <div class="graphic-thumb-label"><span>02</span></div>
+          </div>
+        </div>
+
+        <!-- Row 3: 1001 + 1002 -->
+        <div class="graphic-sys-row2">
+          <div class="graphic-thumb-item">
+            <img src="images/1001.png" alt="Background Graphic 1001" loading="lazy">
+            <div class="graphic-thumb-label"><span>03</span></div>
+          </div>
+          <div class="graphic-thumb-item">
+            <img src="images/1002.png" alt="Background Graphic 1002" loading="lazy">
+            <div class="graphic-thumb-label"><span>04</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Description Block 6 -->
+      <div class="graphic-desc-block reveal">
+        <div class="graphic-desc-icon">🖥️</div>
+        <div class="graphic-desc-text">
+          <h3>หน้าระบบและกราฟิกพื้นหลัง</h3>
+          <div class="graphic-tags">
+            <span class="graphic-tag">UI Design</span>
+            <span class="graphic-tag">System Interface</span>
+            <span class="graphic-tag">Background Graphic</span>
+            <span class="graphic-tag">Web Design</span>
+          </div>
+          <p>
+            งานออกแบบหน้าระบบและกราฟิกพื้นหลังสำหรับใช้ในเว็บแอปพลิเคชัน
+            ครอบคลุมทั้งการออกแบบ UI ของหน้าระบบหลัก และกราฟิกพื้นหลัง
+            ที่ช่วยเสริมบรรยากาศให้กับอินเทอร์เฟซ โดยเน้นความสวยงามและประสบการณ์ผู้ใช้
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2061,7 +3189,7 @@
   <section class="projects-section" id="projects">
     <div class="section-inner fade-up">
       <div class="section-label">Projects</div>
-      <h2 class="section-title">My Projects</h2>
+      <h2 class="section-title">งานออกแบบเว็บไซต์และระบบต่างๆ</h2>
       <p class="section-sub">ผลงานที่ผ่านการพัฒนาจริงทั้งในระหว่างการศึกษา</p>
       <div class="filter-tabs">
         <button class="filter-tab active" onclick="filterProjects('all', this)">All</button>
@@ -2700,6 +3828,67 @@
 
     // Initialize auto slide
     resetInternshipAutoSlide();
+  </script>
+  <!-- ===== LIGHTBOX ===== -->
+  <div id="graphic-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button id="lb-close" aria-label="Close">&times;</button>
+    <img id="lb-img" src="" alt="">
+    <div id="lb-caption"></div>
+  </div>
+
+  <script>
+    /* ─── Lightbox ─── */
+    (function() {
+      const box    = document.getElementById('graphic-lightbox');
+      const img    = document.getElementById('lb-img');
+      const cap    = document.getElementById('lb-caption');
+      const btn    = document.getElementById('lb-close');
+      const section = document.getElementById('graphic');
+
+      function open(src, alt) {
+        img.src = src;
+        img.alt = alt || '';
+        cap.textContent = alt || '';
+        box.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        box.classList.remove('open');
+        document.body.style.overflow = '';
+        img.src = '';
+      }
+
+      // Click backdrop to close
+      box.addEventListener('click', function(e) {
+        if (e.target === box || e.target === cap) close();
+      });
+      btn.addEventListener('click', close);
+
+      // ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+      });
+
+      // Add click to all graphic images after DOM ready
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!section) return;
+        const selectors = [
+          '.graphic-thumb-item img',
+          '.graphic-card-front img',
+          '.graphic-card-back img',
+          '.graphic-esports-img-wrap img',
+          '.graphic-sys-hero img',
+          '.graphic-logo-item img',
+          '.graphic-gallery img'
+        ];
+        section.querySelectorAll(selectors.join(',')).forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            open(el.src, el.alt);
+          });
+        });
+      });
+    })();
   </script>
 </body>
 
